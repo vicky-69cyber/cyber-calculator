@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00ffd5">
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <!-- MODE SWITCH -->
+        <div class="modes">
+            <button class="mode active" data-mode="calc">Calc</button>
+            <button class="mode" data-mode="sci">Sci</button>
+            <button class="mode" data-mode="unit">Unit</button>
+            <button class="mode" data-mode="currency">₹</button>
+        </div>
+
+        <!-- DISPLAY -->
+        <div class="display">
+            <div class="previous" id="previous"></div>
+            <div class="current" id="current">0</div>
+        </div>
+
+        <!-- NORMAL CALCULATOR -->
+        <div class="buttons" id="calc">
+            <button class="func" data-action="clear">AC</button>
+            <button class="func" data-action="delete">⌫</button>
+            <button class="func" data-action="percent">%</button>
+            <button class="op" data-op="/">÷</button>
+
+            <button data-num>7</button>
+            <button data-num>8</button>
+            <button data-num>9</button>
+            <button class="op" data-op="*">×</button>
+
+            <button data-num>4</button>
+            <button data-num>5</button>
+            <button data-num>6</button>
+            <button class="op" data-op="-">−</button>
+
+            <button data-num>1</button>
+            <button data-num>2</button>
+            <button data-num>3</button>
+            <button class="op" data-op="+">+</button>
+
+            <button class="zero" data-num>0</button>
+            <button data-num>.</button>
+            <button class="equal" data-action="equals">=</button>
+        </div>
+
+        <!-- SCIENTIFIC -->
+        <div class="panel hidden" id="sci">
+            <button onclick="scientific('sqrt')">√</button>
+            <button onclick="scientific('square')">x²</button>
+            <button onclick="scientific('sin')">sin</button>
+            <button onclick="scientific('cos')">cos</button>
+            <button onclick="scientific('tan')">tan</button>
+            <button onclick="scientific('log')">log</button>
+            <button onclick="scientific('pi')">π</button>
+        </div>
+
+        <!-- UNIT -->
+        <div class="panel hidden" id="unit">
+            <select id="unitType">
+                <option value="m-km">Meter → KM</option>
+                <option value="km-m">KM → Meter</option>
+                <option value="c-f">°C → °F</option>
+                <option value="f-c">°F → °C</option>
+            </select>
+            <button onclick="convertUnit()">Convert</button>
+        </div>
+
+        <!-- CURRENCY -->
+        <div class="panel hidden" id="currency">
+            <select id="from">
+                <option>INR</option>
+                <option>USD</option>
+                <option>EUR</option>
+            </select>
+            <select id="to">
+                <option>USD</option>
+                <option>INR</option>
+                <option>EUR</option>
+            </select>
+            <button onclick="convertCurrency()">Convert</button>
+        </div>
+
+    </div>
+
+    <!-- MAIN JS -->
+    <script src="main.js"></script>
+
+    <!-- SERVICE WORKER REGISTER -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js");
+        }
+    </script>
+
+</body>
+
+</html>
